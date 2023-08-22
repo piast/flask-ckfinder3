@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask-CKFinder3 example</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+    <script src="{{ url_for('static', filename='vendor/ckfinder/ckfinder.js') }}"></script>
+    <style>
+    body {
+        margin: 1em;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+</head>
+<body>
+    <h1>Flask-CKFinder3 example</h1>
+    <div id="editor"></div>
+    <script>
+        ClassicEditor.create(document.getElementById('editor'),{
+            initialData: "Welcome to this demo!",
+            toolbar: {
+                items: [
+                    "heading", "|",
+                    "bold", "italic", "link", "bulletedList", "|",
+                    "uploadImage", "ckfinder", "|",
+                    "undo", "redo",
+                ],
+            },
+            ckfinder: {
+                uploadUrl: {{ url_for('ckfinder_upload')|tojson }},
+                options: {
+                    connectorPath: {{ url_for('ckfinder_connector')|tojson }},
+                    removeModules: 'CsrfTokenManager',
+                }
+            }
+        });
+    </script>
+</body>
+</html>
