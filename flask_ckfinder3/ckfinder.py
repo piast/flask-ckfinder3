@@ -77,5 +77,5 @@ class CKFinder():
             self.app.add_url_rule('{}/thumbnail/<path:filename>'.format(self.url_prefix),
                                   view_func=lambda filename: send_from_directory(
                                       self.connector.thumbnail_dir, filename, mimetype='image/jpeg'),
-                                  endpoint='ckfinder.thumbnail',
+                                  endpoint='ckfinder_thumbnail',
                                   methods=('GET',))
